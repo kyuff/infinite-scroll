@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="App">
+<head>
+    <title>Infinite Scroll in AngularJS</title>
+    <style type="text/css">
+        div.content {
+            padding: 50px;
+            margin: 50px;
+            max-height: 400px;
+            width: 150px;
+            overflow-y: scroll;
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        div.content::-webkit-scrollbar {
+            width: 0 !important
+        }
+
+        div.content div {
+            margin: 5px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="Ctrl as ctrl">
+    <div id="scroller" class="content" kyuff-scroll="50">
+        {{ ctrl.getDate(isOffset) | date }}
+    </div>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+<script type="text/javascript" src="kyuffInfiniteScroll.js"></script>
+<script type="text/javascript">
+    var App = angular.module("App", ["kyuffScroll"]);
+    App.controller("Ctrl", function Ctrl() {
+        var today = new Date(),
+            miliToSecondFactor = 1000*60*60*24;
+        // today is offset = 0 and offset in days
+        this.getDate = function (offset) {
+            return new Date(today.getTime() + offset*miliToSecondFactor)
+        }
+    });
+</script>
+
+</body>
+</html>
