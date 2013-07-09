@@ -38,10 +38,10 @@
     var App = angular.module("App", ["kyuffScroll"]);
     App.controller("Ctrl", function Ctrl() {
         var today = new Date(),
-            miliToSecondFactor = 1000*60*60*24;
+            miliToDayFactor = 1000*60*60*24;
         // today is offset = 0 and offset in days
         this.getDate = function (offset) {
-            return new Date(today.getTime() + offset*miliToSecondFactor)
+            return new Date(today.getTime() + offset*miliToDayFactor)
         }
     });
 </script>
